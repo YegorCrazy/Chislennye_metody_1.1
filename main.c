@@ -22,6 +22,10 @@ int main (int argc, char **argv) {
     printf("\n\n");
     free(arr);
     
+    input = fopen("input.txt", "r");
+    read_matrix(input, A);
+    read_matrix(input, f);
+    fclose(input);
     arr = gauss_method(A, f, 1);
     for (unsigned i = 0; i < n; ++i) {
         printf("%lf\t", arr[i]);
