@@ -5,7 +5,7 @@
 int main (int argc, char **argv) {
     /*unsigned n;
     scanf("%u", &n);*/
-    unsigned n = 20;
+    unsigned n = 100;
     
     matrix *A = new_matrix(n, n);
     matrix *f = new_matrix(n, 1);
@@ -14,7 +14,7 @@ int main (int argc, char **argv) {
     read_matrix(input, A);
     read_matrix(input, f);
     fclose(input);*/
-    fill_matrix1(A, f, n);
+    fill_matrix4(A, f, n);
     
     //print_matrix(A);
     printf("Starting f coefficents are:\n\n");

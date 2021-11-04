@@ -18,6 +18,7 @@ void fill_matrix2 (matrix *A, matrix *f, unsigned n);
 long double q_M (long double M);
 void fill_matrix3 (matrix *A, matrix *f, unsigned n);
 void fill_matrix4 (matrix *A, matrix *f, unsigned n);
+void fill_matrix5 (matrix *A, matrix *f, unsigned n);
 
 unsigned leading_element (matrix *matr, unsigned n_st, unsigned m_aim);
 void triangulate_matrix (matrix *matr, matrix *f);

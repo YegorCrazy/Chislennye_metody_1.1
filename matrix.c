@@ -137,6 +137,7 @@ void fill_matrix3 (matrix *A, matrix *f, unsigned n) {
                 (A->elem)[i][j] = pow(qM, (double)(i + j + 2)) + 0.1 * ((double)j - (double)i);
             } else {
                 (A->elem)[i][j] = pow(abs_d(qM - 1), (double)(i + j + 2));
+                if ((i + j) % 2 == 1) (A->elem)[i][j] *= (-1);
             }
         }
     }
@@ -150,6 +151,28 @@ void fill_matrix4 (matrix *A, matrix *f, unsigned n) {
         printf("ERROR ERROR ERROR\n");
         return;
     }
+    long double M1 = 5, n1 = 100;
+    long double qM = q_M(M1);
+    for (unsigned i = 0; i < n; ++i) {
+        for (unsigned j = 0; j < n; ++j) {
+            if (i != j) {
+                (A->elem)[i][j] = pow(qM, (double)(i + j + 2)) + 0.1 * ((double)j - (double)i);
+            } else {
+                (A->elem)[i][j] = pow(abs_d(qM - 1), (double)(i + j + 2));
+                if ((i + j) % 2 == 1) (A->elem)[i][j] *= (-1);
+            }
+        }
+    }
+    for (unsigned i = 0; i < n; ++i) {
+        (f->elem)[0][i] = abs_d(M1 - (n1 / 10)) * i * sin(M1);
+    }
+}
+
+void fill_matrix5 (matrix *A, matrix *f, unsigned n) {
+    if (n != 100) {
+        printf("ERROR ERROR ERROR\n");
+        return;
+    }
     long double M1 = 6;
     long double qM = q_M(M1);
     for (unsigned i = 0; i < n; ++i) {
@@ -158,11 +181,12 @@ void fill_matrix4 (matrix *A, matrix *f, unsigned n) {
                 (A->elem)[i][j] = pow(qM, (double)(i + j + 2)) + 0.1 * ((double)j - (double)i);
             } else {
                 (A->elem)[i][j] = pow(abs_d(qM - 1), (double)(i + j + 2));
+                if ((i + j) % 2 == 1) (A->elem)[i][j] *= (-1);
             }
         }
     }
     for (unsigned i = 0; i < n; ++i) {
-        (f->elem)[0][i] = M1 * exp(M1 / i) * cos(M1 / i);
+        (f->elem)[0][i] = M1 * exp(M1 / (i + 1)) * cos(M1 / (i + 1));
     }
 }
 
