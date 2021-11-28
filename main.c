@@ -3,18 +3,18 @@
 #include <stdlib.h>
 
 int main (int argc, char **argv) {
-    /*unsigned n;
-    scanf("%u", &n);*/
-    unsigned n = 100;
+    unsigned n;
+    scanf("%u", &n);
+    //n = 20;
     
     matrix *A = new_matrix(n, n);
     matrix *f = new_matrix(n, 1);
     
-    /*FILE *input = fopen("input.txt", "r");
+    FILE *input = fopen("input.txt", "r");
     read_matrix(input, A);
     read_matrix(input, f);
-    fclose(input);*/
-    fill_matrix4(A, f, n);
+    fclose(input);
+    //fill_matrix1(A, f, n);
     
     //print_matrix(A);
     printf("Starting f coefficents are:\n\n");
