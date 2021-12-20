@@ -31,7 +31,18 @@ int main (int argc, char **argv) {
     delete_matrix(new);
     free(del);*/
     
-    printf("Determinant is %Lf (if it is 0, result can't be calculated well)\n\n", determinant(A));
+    long double det = determinant(A);
+    
+    printf("Determinant is %Lf (if it is 0, result can't be calculated well)\n\n", det);
+    
+    if (abs_d(det) < 0.00000001) {
+        printf("Determinant is nearly zero, condition number can't be calculated\n\n");
+    } else {
+        matrix *reverse = reverse_matrix(A);
+        long double norm = matrix_norm(A) * matrix_norm(reverse);
+        printf("Condition number counted with column norm is %Lf\n\n", norm);
+        delete_matrix(reverse);
+    }
     
     long double *arr = gauss_method(A, f, 0);
     printf("Roots after default Gauss method are:\n\n");

@@ -298,3 +298,58 @@ long double *gauss_method (matrix *A1, matrix *f1, int lead) { //метод Га
     free(roots_raw);
     return roots;
 }
+
+matrix *reverse_matrix (matrix *A) { //поиск обратной матрицы методом Гаусса
+    long long m = A->m;
+    long long n = A->n;
+    if (m != n) return NULL;
+    matrix *A1 = new_matrix(n, m);
+    for (long long i = 0; i < n; ++i) {
+        for (long long j = 0; j < m; ++j) {
+            if (i == j) (A1->elem)[i][j] = 1; // инициализация
+            else (A1->elem)[i][j] = 0;
+        }
+    }
+    long double **elem = A->elem;
+    long double **elem1 = A1->elem;
+    for (long long i = 0; i < m; ++i) {
+        for (long long j = 0; j < n; ++j) {
+            elem1[j][i] /= elem[i][i];
+        }
+        for (long long j = 0; j < n; ++j) {
+            if (j != i) elem[j][i] /= elem[i][i];
+        }
+        elem[i][i] = 1;
+        for (long long j = i + 1; j < m; ++j) {
+            long double koef = elem[i][j];
+            for (long long k = 0; k < n; ++k) {
+                elem[k][j] -= elem[k][i] * koef;
+                elem1[k][j] -= elem1[k][i] * koef; // прямой ход
+            }
+        }
+    }
+    for (long long i = m - 1; i >= 0; --i) {
+        for (long long j = i - 1; j >= 0; --j) {
+            long double koef = elem[i][j];
+            for (long long k = 0; k < n; ++k) {
+                elem[k][j] -= elem[k][i] * koef;
+                elem1[k][j] -= elem1[k][i] * koef; //обратный ход
+            }
+        }
+    }
+    return A1;
+}
+
+long double matrix_norm (matrix *A) {
+    long double ans = 0;
+    
+    for (int i = 0; i < A->n; ++i) {
+        long double cur_sum = 0;
+        for (int j = 0; j < A->m; ++j) {
+            cur_sum += A->elem[i][j];
+        }
+        if (cur_sum > ans) ans = cur_sum;
+    }
+    
+    return ans;
+}

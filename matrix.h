@@ -26,3 +26,6 @@ unsigned *triangulate_matrix_lead (matrix *matr, matrix *f);
 
 long double determinant (matrix *matr);
 long double *gauss_method (matrix *A1, matrix *f1, int lead);
+
+matrix *reverse_matrix (matrix *A);
+long double matrix_norm (matrix *A);
