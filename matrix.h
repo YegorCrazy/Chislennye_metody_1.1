@@ -21,11 +21,11 @@ void fill_matrix4 (matrix *A, matrix *f, unsigned n);
 void fill_matrix5 (matrix *A, matrix *f, unsigned n);
 
 unsigned leading_element (matrix *matr, unsigned n_st, unsigned m_aim);
-void triangulate_matrix (matrix *matr, matrix *f);
+void triangulate_matrix (matrix *matr, matrix *f, int *reverse);
 unsigned *triangulate_matrix_lead (matrix *matr, matrix *f);
 
 long double determinant (matrix *matr);
 long double *gauss_method (matrix *A1, matrix *f1, int lead);
 
-matrix *reverse_matrix (matrix *A);
+matrix *reverse_matrix (matrix *A2)
 long double matrix_norm (matrix *A);
